@@ -13,12 +13,21 @@ foreach ($values as $value) {
         echo "[!] Failed to add value $value to the queue, because it is already full\n";
     }
 }
+echo "\nVisualization of a queue:\n";
+echo "front     rear\n";
+echo "|         |\n";
+echo "1 -> 5 -> 2\n\n";
 echo "Getting first 2 values in the queue: ";
 
 for ($i = 0; $i < 2; ++$i) {
     echo $queue->dequeue() . ' ';
 }
 echo "\n";
+
+echo "\nVisualization of a queue:\n";
+echo "           front,rear\n";
+echo "                |\n";
+echo "null -> null -> 2\n\n";
 
 echo "Trying to add a new value to the queue...\n";
 
@@ -46,15 +55,32 @@ foreach ($values as $value) {
         echo "[!] Failed to add value $value to the queue, because it is already full\n";
     }
 }
+echo "\nVisualization of a queue:\n";
+echo "front     rear\n";
+echo "|         |\n";
+echo "1 -> 5 -> 2\n\n";
+
 echo "Getting first 2 values in the queue: ";
 
 for ($i = 0; $i < 2; ++$i) {
     echo $queue->dequeue() . ' ';
 }
 echo "\n";
+
+echo "\nVisualization of a queue:\n";
+echo "           front,rear\n";
+echo "                |\n";
+echo "null -> null -> 2\n\n";
+
 echo "Trying to add 2 new values to the queue...\n";
 $queue->enqueue(10);
 $queue->enqueue(15);
+
+echo "\nVisualization of a queue:\n";
+echo "    rear  front\n";
+echo "      |     |\n";
+echo "10 -> 15 -> 2\n\n";
+
 echo "Getting all values left in the queue: ";
 
 while ($value = $queue->dequeue()) {
