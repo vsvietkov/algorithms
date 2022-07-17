@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Algorithm efficiency if O(1)
+ * Algorithm efficiency is O(1)
  */
 class Stack
 {
