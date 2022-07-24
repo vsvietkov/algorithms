@@ -1,31 +1,16 @@
-<?php
-
-class Node
-{
-    public ?int $value;
-    public ?Node $leftChild  = null;
-    public ?Node $rightChild = null;
-
-    /**
-     * @param int|null $value
-     */
-    public function __construct(?int $value = null)
-    {
-        $this->value = $value;
-    }
-}
+<?php require_once 'BSTNode.php';
 
 class Tree
 {
     /**
-     * @param Node|null $root
+     * @param BSTNode|null $root
      * @param int $value
-     * @return Node
+     * @return BSTNode
      */
-    public function insert(?Node $root, int $value): Node
+    public function insert(?BSTNode $root, int $value): BSTNode
     {
         if ($root === null) {
-            return new Node($value);
+            return new BSTNode($value);
         }
 
         if ($value < $root->value) {
@@ -40,10 +25,10 @@ class Tree
     /**
      * Find the leftmost node
      *
-     * @param Node|null $root
-     * @return Node|null
+     * @param BSTNode|null $root
+     * @return BSTNode|null
      */
-    public function minValueNode(?Node $root): ?Node
+    public function minValueNode(?BSTNode $root): ?BSTNode
     {
         $current = $root;
 
@@ -55,11 +40,11 @@ class Tree
     }
 
     /**
-     * @param Node|null $root
+     * @param BSTNode|null $root
      * @param int $value
-     * @return Node|null
+     * @return BSTNode|null
      */
-    public function delete(?Node $root, int $value): ?Node
+    public function delete(?BSTNode $root, int $value): ?BSTNode
     {
         if ($root === null) {
             return null;
@@ -85,11 +70,11 @@ class Tree
     }
 
     /**
-     * @param Node|null $root
+     * @param BSTNode|null $root
      * @param int $value
-     * @return Node|null
+     * @return BSTNode|null
      */
-    public function search(?Node $root, int $value): ?Node
+    public function search(?BSTNode $root, int $value): ?BSTNode
     {
         if (!$root) {
             return null;
