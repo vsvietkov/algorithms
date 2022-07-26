@@ -1,6 +1,6 @@
 <?php require_once 'BSTNode.php';
 
-class Tree
+class BSTree
 {
     /**
      * @param BSTNode|null $root
