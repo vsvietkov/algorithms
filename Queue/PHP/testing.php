@@ -1,10 +1,10 @@
 <?php
 require_once "Queue.php";
 
-echo "Testing a simple queue...\n";
-$size   = 3;
-$values = [1, 5, 2, 10];
-$queue  = new Queue(3);
+$size       = readline('Enter a size of a queue: ');
+$isCircular = readline('Enter 1 to choose a common queue and 2 - circular queue: ');
+$queue      = new Queue($size, $isCircular != 1);
+$values     = explode(',', readline('Enter a list of values to insert in a format "1,2,3...": '));
 
 echo "Filling a queue of size $size with values " . implode(',', $values) . "\n";
 
@@ -13,77 +13,30 @@ foreach ($values as $value) {
         echo "[!] Failed to add value $value to the queue, because it is already full\n";
     }
 }
-echo "\nVisualization of a queue:\n";
-echo "front     rear\n";
-echo "|         |\n";
-echo "1 -> 5 -> 2\n\n";
-echo "Getting first 2 values in the queue: ";
+$amountToGet = readline('Enter an amount of elements to get from the queue: ');
 
-for ($i = 0; $i < 2; ++$i) {
-    echo $queue->dequeue() . ' ';
+for ($i = 0; $i < $amountToGet && !$queue->isEmpty(); ++$i) {
+    echo '[!] Got element with value ' . $queue->dequeue() . "\n";
 }
-echo "\n";
+$proceed = readline('Enter 1 if you want to add some values to the queue and 2 if not: ');
 
-echo "\nVisualization of a queue:\n";
-echo "           front,rear\n";
-echo "                |\n";
-echo "null -> null -> 2\n\n";
+if ($proceed == 1) {
+    $values = explode(',', readline('Enter a list of values to insert in a format "1,2,3...": '));
 
-echo "Trying to add a new value to the queue...\n";
-
-if (!$queue->enqueue(10)) {
-    echo "[!] Failed to add a new value to the queue, because it should be reinitialized first\n";
-}
-echo "Getting all values left in the queue: ";
-
-while ($value = $queue->dequeue()) {
-    echo $value . ' ';
-}
-echo "\nQueue is empty now\n\n";
-
-echo  "====================================\n";
-
-echo "\nTesting a circular queue...\n";
-$size   = 3;
-$values = [1, 5, 2, 10, 15];
-$queue  = new Queue(3, true);
-
-echo "Filling a circular queue of size $size with values " . implode(',', $values) . "\n";
-
-foreach ($values as $value) {
-    if (!$queue->enqueue($value)) {
-        echo "[!] Failed to add value $value to the queue, because it is already full\n";
+    foreach ($values as $value) {
+        if (!$queue->enqueue($value)) {
+            echo "[!] Failed to add value $value to the queue, because it is already full\n";
+        }
     }
 }
-echo "\nVisualization of a queue:\n";
-echo "front     rear\n";
-echo "|         |\n";
-echo "1 -> 5 -> 2\n\n";
 
-echo "Getting first 2 values in the queue: ";
+if ($queue->isEmpty()) {
+    echo "A queue is empty.";
+} else {
+    echo "A queue has next values: ";
 
-for ($i = 0; $i < 2; ++$i) {
-    echo $queue->dequeue() . ' ';
+    while (!$queue->isEmpty()) {
+        echo $queue->dequeue() . ', ';
+    }
+    echo "\n";
 }
-echo "\n";
-
-echo "\nVisualization of a queue:\n";
-echo "           front,rear\n";
-echo "                |\n";
-echo "null -> null -> 2\n\n";
-
-echo "Trying to add 2 new values to the queue...\n";
-$queue->enqueue(10);
-$queue->enqueue(15);
-
-echo "\nVisualization of a queue:\n";
-echo "    rear  front\n";
-echo "      |     |\n";
-echo "10 -> 15 -> 2\n\n";
-
-echo "Getting all values left in the queue: ";
-
-while ($value = $queue->dequeue()) {
-    echo $value . ' ';
-}
-echo "\nQueue is empty now\n";
