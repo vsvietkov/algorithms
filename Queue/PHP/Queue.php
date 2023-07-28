@@ -5,10 +5,10 @@
  */
 class Queue
 {
-    private array $_data;
-    private int $_front = -1;
-    private int $_rear  = -1;
-    private int $_size;
+    protected array $_data;
+    protected int $_front = -1;
+    protected int $_rear  = -1;
+    protected int $_size;
 
     public function __construct(int $size = 0)
     {
@@ -31,13 +31,7 @@ class Queue
         if ($this->isEmpty()) {
             $this->_front = 0;
         }
-
-        if ($this->_rear === $this->_size - 1) {
-            $this->_rear = 0;
-        } else {
-            $this->_rear++;
-        }
-        $this->_data[$this->_rear] = $value;
+        $this->_data[++$this->_rear] = $value;
 
         return true;
     }
@@ -77,6 +71,8 @@ class Queue
      */
     public function peek(): mixed
     {
-        return $this->_data[$this->_front];
+        return $this->isEmpty()
+            ? null // Depending on the requirement, we can throw an error here
+            : $this->_data[$this->_front];
     }
 }
