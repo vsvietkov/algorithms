@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/CircularQueue.php';
+<?php require_once __DIR__ . '/../CircularQueue.php';
 
 $size = readline('Enter a size of a queue: ');
 $isCircular = readline('Enter 1 to choose a common queue and 2 - circular queue: ');

@@ -16,6 +16,7 @@ class Deque extends CircularQueue
 
         if ($this->isEmpty()) {
             $this->_front = 0;
+            $this->_rear = 0;
         } elseif ($this->_front === 0) {
             $this->_front = $this->_size - 1;
         } else {
@@ -43,8 +44,7 @@ class Deque extends CircularQueue
             $this->_front = -1;
             $this->_rear = -1;
         } else if ($this->_rear < 1) {
-            // Reached the starting position,
-            // move the rear pointer to the end
+            // Reached the starting position, move the rear pointer to the end
             $this->_rear = $this->_size - 1;
         } else {
             $this->_rear--;
