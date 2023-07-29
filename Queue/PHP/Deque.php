@@ -2,6 +2,11 @@
 
 class Deque extends CircularQueue
 {
+    /**
+     * Add an element for the front of the queue
+     * 
+     * Returns true on success, false if the queue is already full
+     */
     public function enqueueFront(mixed $value): bool
     {
         if ($this->isFull()) {
@@ -21,6 +26,9 @@ class Deque extends CircularQueue
         return true;
     }
 
+    /**
+     * Remove an element from the end of the queue
+     */
     public function dequeueRear(): mixed
     {
         if ($this->isEmpty()) {
