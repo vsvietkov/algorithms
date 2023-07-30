@@ -7,7 +7,7 @@ class Queue
 {
     protected array $_data;
     protected int $_front = -1;
-    protected int $_rear  = -1;
+    protected int $_rear = -1;
     protected int $_size;
 
     public function __construct(int $size = 0)

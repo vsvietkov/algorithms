@@ -3,6 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use Algorithms\Queue\Queue;
 
+/** @covers Algorithms\Queue\Queue */
 final class SimpleQueueTest extends TestCase
 {
     public function testIsFull(): void
@@ -33,6 +34,10 @@ final class SimpleQueueTest extends TestCase
         $queue->enqueue(10);
         $this->assertEquals(10, $queue->peek());
         $this->assertTrue($queue->isFull());
+
+        $queue->dequeue();
+        $this->assertTrue($queue->isEmpty());
+        $this->assertEquals(null, $queue->peek());
     }
 
     public function testEnqueue(): void

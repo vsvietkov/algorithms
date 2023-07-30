@@ -10,7 +10,7 @@ install:
 	@$(docker-run) composer install && composer dump-autoload
 
 test:
-	@$(docker-run) vendor/bin/phpunit tests --colors --testdox
+	@$(docker-run) vendor/bin/phpunit tests --colors --testdox --coverage-html results/phpunit/ --coverage-clover results/phpunit/coverage.xml --log-junit results/phpunit/phpunit.xml
 
 autoload:
 	@$(docker-run) composer dump-autoload
