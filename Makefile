@@ -7,7 +7,10 @@ docker-build:
 	@docker build --build-arg workdir=$(workdir) . -t $(imagename)
 
 install:
-	@$(docker-run) composer install
+	@$(docker-run) composer install && composer dump-autoload
 
 test:
-	@$(docker-run) vendor/bin/phpunit tests --colors
+	@$(docker-run) vendor/bin/phpunit tests --colors --testdox
+
+autoload:
+	@$(docker-run) composer dump-autoload

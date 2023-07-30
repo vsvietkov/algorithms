@@ -1,4 +1,6 @@
-<?php require_once __DIR__ . '/Queue.php';
+<?php namespace Algorithms\Queue;
+
+use Queue;
 
 class CircularQueue extends Queue
 {

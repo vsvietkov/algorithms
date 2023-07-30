@@ -1,4 +1,6 @@
-<?php require_once __DIR__ . '/CircularQueue.php';
+<?php namespace Algorithms\Queue;
+
+use CircularQueue;
 
 class Deque extends CircularQueue
 {

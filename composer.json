@@ -2,7 +2,10 @@
     "autoload": {
         "classmap": [
             "src/"
-        ]
+        ],
+        "psr-4": {
+            "Algorithms\\Queue\\": "src/Queue/PHP/"
+        }
     },
     "require-dev": {
         "phpunit/phpunit": "^10"
