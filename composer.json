@@ -4,7 +4,8 @@
             "src/"
         ],
         "psr-4": {
-            "Algorithms\\Queue\\": "src/Queue/PHP/"
+            "Algorithms\\Queue\\": "src/Queue/PHP/",
+            "Algorithms\\Heap\\": "src/Heap/PHP/"
         }
     },
     "require-dev": {

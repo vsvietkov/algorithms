@@ -1,7 +1,5 @@
 <?php namespace Algorithms\Heap;
 
-use SplFixedArray;
-
 enum HeapType
 {
     case MaxHeap;
@@ -11,9 +9,24 @@ enum HeapType
 abstract class Heap
 {
     protected HeapType $_type;
-    protected array $_data = [];
+    protected array $_data;
 
-    public function heapify(SplFixedArray|array &$input, int $inputSize, int $index): void
+    public function __construct(array $array = []) {
+        $this->_data = $array;
+
+        if ($arraySize = count($array)) {
+            for ($i = intdiv($arraySize, 2) - 1; $i >= 0; --$i) {
+                $this->heapify($this->_data, $arraySize, $i);
+            }
+        }
+    }
+
+    public function getData(): array
+    {
+        return $this->_data;
+    }
+
+    public function heapify(array &$input, int $inputSize, int $index): void
     {
         $indexToSwap = $index;
         $leftChildIndex = 2 * $index + 1;
@@ -47,8 +60,30 @@ abstract class Heap
             return;
         }
 
-        for ($index = $inputSize / 2 - 1; $index >= 0; --$index) {
+        for ($index = intdiv($inputSize, 2) - 1; $index >= 0; --$index) {
             $this->heapify($this->_data, $inputSize, $index);
         }
+    }
+
+    public function delete(int $value): void
+    {
+        $dataSize = count($this->_data);
+
+        for ($i = 0; $i < $dataSize; ++$i) {
+            if ($value === $this->_data[$i]) {
+                break;
+            }
+        }
+        [ $this->_data[$i], $this->_data[$dataSize - 1] ] = [ $this->_data[$dataSize - 1], $this->_data[$i] ];
+        array_pop($this->_data);
+
+        for ($i = intdiv($dataSize, 2) - 1; $i >= 0; --$i) {
+            $this->heapify($this->_data, $dataSize, $i);
+        }
+    }
+
+    public function peek(): ?int
+    {
+        return $this->_data[0] ?? null;
     }
 }
