@@ -1,14 +1,10 @@
 <?php namespace Algorithms\Heap;
 
-enum HeapType
-{
-    case MaxHeap;
-    case MinHeap;
-}
+use Algorithms\Heap\HeapTypeEnum;
 
 abstract class Heap
 {
-    protected HeapType $_type;
+    protected HeapTypeEnum $_heapType;
     protected array $_data;
 
     public function __construct(array $array = []) {
@@ -26,29 +22,30 @@ abstract class Heap
         return $this->_data;
     }
 
-    public function heapify(array &$input, int $inputSize, int $index): void
+    public function heapify(array &$array, int $arraySize, int $index): void
     {
-        $indexToSwap = $index;
+        $indexToSwap = $index; // The largest element in MaxHeap and smallest in MinHeap
         $leftChildIndex = 2 * $index + 1;
         $rightChildIndex = 2 * $index + 2;
 
-        if ($leftChildIndex < $inputSize) {
-            $indexToSwap = match($this->_type) {
-                HeapType::MaxHeap => $input[$leftChildIndex] > $input[$indexToSwap] ? $leftChildIndex : $indexToSwap,
-                HeapType::MinHeap => $input[$leftChildIndex] < $input[$indexToSwap] ? $leftChildIndex : $indexToSwap
+        if ($leftChildIndex < $arraySize) {
+            $indexToSwap = match($this->_heapType) {
+                HeapTypeEnum::MaxHeap => $array[$leftChildIndex] > $array[$indexToSwap] ? $leftChildIndex : $indexToSwap,
+                HeapTypeEnum::MinHeap => $array[$leftChildIndex] < $array[$indexToSwap] ? $leftChildIndex : $indexToSwap
             };
         }
 
-        if ($rightChildIndex < $inputSize) {
-            $indexToSwap = match($this->_type) {
-                HeapType::MaxHeap => $input[$rightChildIndex] > $input[$indexToSwap] ? $rightChildIndex : $indexToSwap,
-                HeapType::MinHeap => $input[$rightChildIndex] < $input[$indexToSwap] ? $rightChildIndex : $indexToSwap
+        if ($rightChildIndex < $arraySize) {
+            $indexToSwap = match($this->_heapType) {
+                HeapTypeEnum::MaxHeap => $array[$rightChildIndex] > $array[$indexToSwap] ? $rightChildIndex : $indexToSwap,
+                HeapTypeEnum::MinHeap => $array[$rightChildIndex] < $array[$indexToSwap] ? $rightChildIndex : $indexToSwap
             };
         }
 
         if ($indexToSwap !== $index) {
-            [ $input[$indexToSwap], $input[$index] ] = [ $input[$index], $input[$indexToSwap] ];
-            $this->heapify($input, $inputSize, $indexToSwap);
+            [ $array[$indexToSwap], $array[$index] ] = [ $array[$index], $array[$indexToSwap] ];
+            // Traverse through children and validate heap property
+            $this->heapify($array, $arraySize, $indexToSwap);
         }
     }
 
@@ -56,12 +53,14 @@ abstract class Heap
     {
         $this->_data[] = $value;
 
-        if ( !($inputSize = count($this->_data) - 1) ) {
+        if ( !($dataSize = count($this->_data) - 1) ) {
+            // There is only one element in array
             return;
         }
 
-        for ($index = intdiv($inputSize, 2) - 1; $index >= 0; --$index) {
-            $this->heapify($this->_data, $inputSize, $index);
+        // Traverse through each node with children
+        for ($i = intdiv($dataSize, 2) - 1; $i >= 0; --$i) {
+            $this->heapify($this->_data, $dataSize, $i);
         }
     }
 
@@ -69,21 +68,48 @@ abstract class Heap
     {
         $dataSize = count($this->_data);
 
+        // Find the needed element
         for ($i = 0; $i < $dataSize; ++$i) {
             if ($value === $this->_data[$i]) {
                 break;
             }
         }
+
+        if ($i === $dataSize) {
+            // The element is not found
+            return;
+        }
+        // Swap the needed element with the latest one
         [ $this->_data[$i], $this->_data[$dataSize - 1] ] = [ $this->_data[$dataSize - 1], $this->_data[$i] ];
         array_pop($this->_data);
 
-        for ($i = intdiv($dataSize, 2) - 1; $i >= 0; --$i) {
-            $this->heapify($this->_data, $dataSize, $i);
+        if ($i !== $dataSize - 1) {
+            // Ensure the heap is valid
+            for ($i = intdiv($dataSize, 2) - 1; $i >= 0; --$i) {
+                $this->heapify($this->_data, $dataSize, $i);
+            }
         }
     }
 
+    /**
+     * Returns the maximum element from Max Heap or minimum element from Min Heap without deleting the node
+     */
     public function peek(): ?int
     {
         return $this->_data[0] ?? null;
+    }
+
+    /**
+     * Returns the max value in MaxHeap and min value in MinHeap after removing it
+     */
+    public function extract(): ?int
+    {
+        if (empty($this->_data)) {
+            return null;
+        }
+        $deletedElement = $this->peek();
+        $this->delete($deletedElement);
+
+        return $deletedElement;
     }
 }

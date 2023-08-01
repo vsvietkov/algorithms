@@ -1,12 +1,12 @@
 <?php namespace Algorithms\Heap;
 
-use Heap;
+use Algorithms\Heap\Heap;
 
 class MinHeap extends Heap
 {
     public function __construct(array $array = [])
     {
-        $this->_type = HeapType::MinHeap;
+        $this->_heapType = HeapTypeEnum::MinHeap;
         parent::__construct($array);
     }
 }
