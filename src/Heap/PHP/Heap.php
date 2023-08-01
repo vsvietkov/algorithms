@@ -85,8 +85,8 @@ abstract class Heap
 
         if ($i !== $dataSize - 1) {
             // Ensure the heap is valid
-            for ($i = intdiv($dataSize, 2) - 1; $i >= 0; --$i) {
-                $this->heapify($this->_data, $dataSize, $i);
+            for ($i = intdiv($dataSize - 1, 2) - 1; $i >= 0; --$i) {
+                $this->heapify($this->_data, $dataSize - 1, $i);
             }
         }
     }
