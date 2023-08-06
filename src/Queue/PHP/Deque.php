@@ -1,6 +1,6 @@
 <?php namespace Algorithms\Queue;
 
-use CircularQueue;
+use Algorithms\Queue\CircularQueue;
 
 class Deque extends CircularQueue
 {

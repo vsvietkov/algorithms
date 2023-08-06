@@ -1,18 +1,14 @@
 <?php declare(strict_types=1);
 
-use PHPUnit\Framework\TestCase;
+require_once __DIR__ . '/QueueCase.php';
 use Algorithms\Queue\CircularQueue;
 
 /**
  * @covers Algorithms\Queue\CircularQueue
  * @covers Algorithms\Queue\Queue
  */
-final class CircularQueueTest extends TestCase
+final class CircularQueueTest extends QueueCase
 {
-    private function _getQueueData(CircularQueue $queue) {
-        return (new ReflectionObject($queue))->getProperty('_data')->getValue($queue);
-    }
-
     public function testEnqueue(): void
     {
         $queue = new CircularQueue(3);
