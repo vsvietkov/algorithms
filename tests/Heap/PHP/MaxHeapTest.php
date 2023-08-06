@@ -87,6 +87,7 @@ final class MaxHeapTest extends TestCase
     {
         $heap = new MaxHeap([9, 7, 5, 4, 1]);
         $this->assertEquals(9, $heap->peek());
+        $this->assertEquals(5, count($heap->getData()));
     }
 
     public function testExtract(): void
