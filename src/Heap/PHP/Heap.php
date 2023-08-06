@@ -29,6 +29,7 @@ abstract class Heap
         $rightChildIndex = 2 * $index + 2;
 
         if ($leftChildIndex < $arraySize) {
+            // Compare the left child with current node
             $indexToSwap = match($this->_heapType) {
                 HeapTypeEnum::MaxHeap => $array[$leftChildIndex] > $array[$indexToSwap] ? $leftChildIndex : $indexToSwap,
                 HeapTypeEnum::MinHeap => $array[$leftChildIndex] < $array[$indexToSwap] ? $leftChildIndex : $indexToSwap
@@ -36,6 +37,7 @@ abstract class Heap
         }
 
         if ($rightChildIndex < $arraySize) {
+            // Compare the right child with the left one
             $indexToSwap = match($this->_heapType) {
                 HeapTypeEnum::MaxHeap => $array[$rightChildIndex] > $array[$indexToSwap] ? $rightChildIndex : $indexToSwap,
                 HeapTypeEnum::MinHeap => $array[$rightChildIndex] < $array[$indexToSwap] ? $rightChildIndex : $indexToSwap
