@@ -1,6 +1,6 @@
 <?php namespace Algorithms\Queue;
 
-use Queue;
+use Algorithms\Queue\Queue;
 
 class CircularQueue extends Queue
 {

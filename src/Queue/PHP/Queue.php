@@ -1,8 +1,6 @@
 <?php namespace Algorithms\Queue;
 
-/**
- * Simple Queue implementation
- */
+/** Simple Queue implementation */
 class Queue
 {
     protected array $_data;
