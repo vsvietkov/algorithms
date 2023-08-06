@@ -1,7 +1,8 @@
 imagename := vsvietkov-algorithms
 workdir := /algorithms
+tty-options := -it # Enable color output locally, disable for github
 
-docker-run := docker run --rm -it -v ${PWD}:/$(workdir) $(imagename)
+docker-run := docker run $(tty-options) --rm -v ${PWD}:/$(workdir) $(imagename)
 
 docker-build:
 	@docker build --build-arg workdir=$(workdir) . -t $(imagename)
