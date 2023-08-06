@@ -8,6 +8,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: make docker-build
-      - run: make install tty-options=
-      - run: make test tty-options=
+
+      - name: Build docker image
+        run: make docker-build
+
+      - name: Install dependencies
+        run: make install tty-options=
+
+      - name: Run tests
+        run: make test tty-options=
