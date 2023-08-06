@@ -9,20 +9,48 @@ use Algorithms\Heap\MaxHeap;
  * */
 final class MaxHeapTest extends TestCase
 {
-    /**
-     *               9
-     *        8             7
-     *    1       3     2       5
-     */
-    private array $_resultArray = [9, 8, 7, 1, 3, 2, 5];
-    
-    private array $_startingArray = [3, 9, 7, 1, 8, 2, 5];
-
     public function testHeapify(): void
     {
-        $heap = new MaxHeap($this->_startingArray);
-        $heapifiedArray = $heap->getData();
-        $this->assertEquals($this->_resultArray, $heapifiedArray);
+        // Test with a random unsorted array
+        $heap = new MaxHeap([3, 9, 7, 1, 8, 2, 5]);
+        $this->assertEquals([9, 8, 7, 1, 3, 2, 5], $heap->getData());
+
+        // Test with an already sorted array
+        $sortedArray = [9, 8, 7, 5, 3, 2, 1];
+        $heap = new MaxHeap($sortedArray);
+        $this->assertEquals($sortedArray, $heap->getData());
+
+        // Test with a reverse sorted array
+        $heap = new MaxHeap([1, 2, 3, 5, 7, 8, 9]);
+        $this->assertEquals([9, 7, 8, 5, 2, 1, 3], $heap->getData());
+
+        // Test with duplicate elements
+        $heap = new MaxHeap([4, 2, 4, 1, 7, 2, 5]);
+        $this->assertEquals([7, 4, 5, 1, 2, 2, 4], $heap->getData());
+    }
+
+    public function testIsert(): void
+    {
+        // Test inserting single element
+        $heap = new MaxHeap();
+        $heap->insert(20);
+        $this->assertEquals([20], $heap->getData());
+
+        // Test inserting multiple elements
+        $alreadySortedArray = [20, 15, 10, 5];
+        $heap = new MaxHeap();
+        $heap->insert($alreadySortedArray);
+        $this->assertEquals($alreadySortedArray, $heap->getData());
+
+        // Test inserting multiple element in random order
+        $heap = new MaxHeap();
+        $heap->insert([10, 5, 20, 15]);
+        $this->assertEquals([20, 15, 10, 5], $heap->getData());
+
+        // Test inserting duplicate elements
+        $heap = new MaxHeap();
+        $heap->insert([20, 15, 20, 10]);
+        $this->assertEquals([20, 15, 20, 10], $heap->getData());
     }
 
     public function testDelete(): void
@@ -44,23 +72,30 @@ final class MaxHeapTest extends TestCase
         $heap = new MaxHeap();
         $heap->delete(15);
         $this->assertEmpty($heap->getData());
+
+        // Test deleting in a sequence till empty
+        $testingArray = [3, 9, 7, 1, 8, 2, 5];
+        $heap = new MaxHeap($testingArray);
+
+        foreach($testingArray as $element) {
+            $heap->delete($element);
+        }
+        $this->assertEmpty($heap->getData());
     }
 
     public function testPeek(): void
     {
-        $data = array_reverse($this->_resultArray);
-        $this->assertNotEquals($data[0], $this->_resultArray[0]);
-        $heap = new MaxHeap($data);
-        $this->assertEquals($this->_resultArray[0], $heap->peek());
+        $heap = new MaxHeap([9, 7, 5, 4, 1]);
+        $this->assertEquals(9, $heap->peek());
     }
 
     public function testExtract(): void
     {
-        $heap = new MaxHeap($this->_resultArray);
-        $maxElement = $heap->extract();
-        $this->assertEquals($this->_resultArray[0], $maxElement);
-        $this->assertEquals($this->_resultArray[1], $heap->peek());
+        // Test extracting the max element
+        $heap = new MaxHeap([9, 8, 7, 5, 3, 2, 1]);
+        $this->assertEquals(9, $heap->extract());
 
+        // Test extracting from an empty heap
         $heap = new MaxHeap();
         $this->assertEquals(null, $heap->extract());
     }

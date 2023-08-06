@@ -49,11 +49,15 @@ abstract class Heap
         }
     }
 
-    public function insert(int $value): void
+    public function insert(int|array $value): void
     {
-        $this->_data[] = $value;
+        if (is_array($value)) {
+            $this->_data = array_merge($this->_data, $value);
+        } else {
+            $this->_data[] = $value;
+        }
 
-        if ( !($dataSize = count($this->_data) - 1) ) {
+        if ( ($dataSize = count($this->_data)) === 1 ) {
             // There is only one element in array
             return;
         }
