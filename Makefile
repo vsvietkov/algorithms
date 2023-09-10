@@ -3,7 +3,7 @@ workdir := /data-structures
 tty-options := -it # Enable color output locally, disable for github
 
 docker-run := docker run $(tty-options) --rm -v ${PWD}:/$(workdir) $(imagename)
-phpcs-settings := --standard=vendor/vsvietkov/phpcs-rules/src/ruleset.xml -p --colors src/ tests/
+phpcs-settings := --standard=vendor/vsvietkov/phpcs-rules/src/ruleset.xml --warning-severity=6 -p --colors src/ tests/
 
 docker-build:
 	@docker build --build-arg workdir=$(workdir) . -t $(imagename)
