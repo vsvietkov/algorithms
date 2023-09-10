@@ -7,5 +7,5 @@ RUN pecl install xdebug-3.2.0 \
     && docker-php-ext-enable xdebug \
     && echo "xdebug.mode=coverage" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-ARG workdir=/algorithms
+ARG workdir=/data-structures
 WORKDIR ${workdir}
