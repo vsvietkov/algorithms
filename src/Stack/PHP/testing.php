@@ -1,5 +1,6 @@
 <?php
-require_once 'Stack.php';
+
+use Vsvietkov\DataStructures\Stack\Stack;
 
 // Testing Stack - Reverse a work
 $word = readline('Enter a word to be reversed: ');

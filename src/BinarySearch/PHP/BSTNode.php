@@ -1,5 +1,7 @@
 <?php
 
+namespace Vsvietkov\DataStructures\BinarySearch;
+
 class BSTNode
 {
     public ?int $value;

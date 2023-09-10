@@ -1,13 +1,16 @@
-<?php namespace Algorithms\Heap;
+<?php
 
-use Algorithms\Heap\HeapTypeEnum;
+namespace Vsvietkov\DataStructures\Heap;
+
+use Vsvietkov\DataStructures\Heap\HeapTypeEnum;
 
 abstract class Heap
 {
     protected HeapTypeEnum $_heapType;
     protected array $_data;
 
-    public function __construct(array $array = []) {
+    public function __construct(array $array = [])
+    {
         $this->_data = $array;
 
         if ($arraySize = count($array)) {
@@ -30,17 +33,25 @@ abstract class Heap
 
         if ($leftChildIndex < $arraySize) {
             // Compare the left child with current node
-            $indexToSwap = match($this->_heapType) {
-                HeapTypeEnum::MaxHeap => $array[$leftChildIndex] > $array[$indexToSwap] ? $leftChildIndex : $indexToSwap,
-                HeapTypeEnum::MinHeap => $array[$leftChildIndex] < $array[$indexToSwap] ? $leftChildIndex : $indexToSwap
+            $indexToSwap = match ($this->_heapType) {
+                HeapTypeEnum::MaxHeap => $array[$leftChildIndex] > $array[$indexToSwap]
+                    ? $leftChildIndex
+                    : $indexToSwap,
+                HeapTypeEnum::MinHeap => $array[$leftChildIndex] < $array[$indexToSwap]
+                    ? $leftChildIndex
+                    : $indexToSwap
             };
         }
 
         if ($rightChildIndex < $arraySize) {
             // Compare the right child with the left one
-            $indexToSwap = match($this->_heapType) {
-                HeapTypeEnum::MaxHeap => $array[$rightChildIndex] > $array[$indexToSwap] ? $rightChildIndex : $indexToSwap,
-                HeapTypeEnum::MinHeap => $array[$rightChildIndex] < $array[$indexToSwap] ? $rightChildIndex : $indexToSwap
+            $indexToSwap = match ($this->_heapType) {
+                HeapTypeEnum::MaxHeap => $array[$rightChildIndex] > $array[$indexToSwap]
+                    ? $rightChildIndex
+                    : $indexToSwap,
+                HeapTypeEnum::MinHeap => $array[$rightChildIndex] < $array[$indexToSwap]
+                    ? $rightChildIndex
+                    : $indexToSwap
             };
         }
 
@@ -59,7 +70,7 @@ abstract class Heap
             $this->_data[] = $value;
         }
 
-        if ( ($dataSize = count($this->_data)) === 1 ) {
+        if (($dataSize = count($this->_data)) === 1) {
             // There is only one element in array
             return;
         }

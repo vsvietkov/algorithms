@@ -1,12 +1,14 @@
 <?php
 
+namespace Vsvietkov\DataStructures\Stack;
+
 /**
  * Algorithm efficiency is O(1)
  */
 class Stack
 {
-    private int   $size;
-    private int   $top  = -1;
+    private int $size;
+    private int $top  = -1;
     private array $data = [];
 
     /**

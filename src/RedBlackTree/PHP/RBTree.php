@@ -1,4 +1,8 @@
-<?php require_once 'RBNode.php';
+<?php
+
+namespace Vsvietkov\DataStructures\RedBlackTree;
+
+use Vsvietkov\DataStructures\RedBlackTree\RBNode;
 
 class RBTree
 {
@@ -22,7 +26,7 @@ class RBTree
 
         if (!$y->parent) {
             $this->root = $y;
-        } else if ($y->parent->leftChild === $x) {
+        } elseif ($y->parent->leftChild === $x) {
             $y->parent->leftChild = $y;
         } else {
             $y->parent->rightChild = $y;
@@ -46,7 +50,7 @@ class RBTree
 
         if (!$x->parent) {
             $this->root = $x;
-        } else if ($x->parent->leftChild === $y) {
+        } elseif ($x->parent->leftChild === $y) {
             $x->parent->leftChild = $x;
         } else {
             $x->parent->rightChild = $x;

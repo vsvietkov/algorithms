@@ -1,6 +1,8 @@
-<?php namespace Algorithms\Queue;
+<?php
 
-use Algorithms\Queue\Queue;
+namespace Vsvietkov\DataStructures\Queue;
+
+use Vsvietkov\DataStructures\Queue\Queue;
 
 class CircularQueue extends Queue
 {
@@ -46,14 +48,13 @@ class CircularQueue extends Queue
             // Got all values, set queue as empty
             $this->_front = -1;
             $this->_rear = -1;
-        } else if ($this->_front === $this->_size - 1) {
+        } elseif ($this->_front === $this->_size - 1) {
             // Reached the allocated end,
             // move the front pointer to the beginning in a circular queue
             $this->_front = 0;
         } else {
             $this->_front++;
         }
-
         return $returnValue;
     }
 

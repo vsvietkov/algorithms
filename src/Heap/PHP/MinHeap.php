@@ -1,6 +1,8 @@
-<?php namespace Algorithms\Heap;
+<?php
 
-use Algorithms\Heap\Heap;
+namespace Vsvietkov\DataStructures\Heap;
+
+use Vsvietkov\DataStructures\Heap\Heap;
 
 class MinHeap extends Heap
 {

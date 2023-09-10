@@ -1,12 +1,17 @@
-<?php declare(strict_types=1);
+<?php
 
-require_once __DIR__ . '/QueueCase.php';
-use Algorithms\Queue\Deque;
+declare(strict_types=1);
+
+namespace Vsvietkov\DataStructures\Tests\Queue;
+
+//require_once __DIR__ . '/QueueCase.php';
+use Vsvietkov\DataStructures\Tests\Queue\QueueCase;
+use Vsvietkov\DataStructures\Queue\Deque;
 
 /**
- * @covers Algorithms\Queue\Deque
- * @covers Algorithms\Queue\CircularQueue
- * @covers Algorithms\Queue\Queue
+ * @covers Vsvietkov\DataStructures\Queue\Deque
+ * @covers Vsvietkov\DataStructures\Queue\CircularQueue
+ * @covers Vsvietkov\DataStructures\Queue\Queue
  */
 final class DequeTest extends QueueCase
 {

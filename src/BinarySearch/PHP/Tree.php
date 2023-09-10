@@ -1,4 +1,8 @@
-<?php require_once 'BSTNode.php';
+<?php
+
+namespace Vsvietkov\DataStructures\BinarySearch;
+
+use Vsvietkov\DataStructures\BinarySearch\BSTNode;
 
 class BSTree
 {
@@ -18,7 +22,6 @@ class BSTree
         } else {
             $root->rightChild = $this->insert($root->rightChild, $value);
         }
-
         return $root;
     }
 
@@ -35,7 +38,6 @@ class BSTree
         while ($current && $current->leftChild !== null) {
             $current = $current->leftChild;
         }
-
         return $current;
     }
 
@@ -52,12 +54,12 @@ class BSTree
 
         if ($value < $root->value) {
             $root->leftChild = $this->delete($root->leftChild, $value);
-        } else if ($value > $root->value) {
+        } elseif ($value > $root->value) {
             $root->rightChild = $this->delete($root->rightChild, $value);
         } else {
             if ($root->leftChild === null) {
                 return $root->rightChild;
-            } else if ($root->rightChild === null) {
+            } elseif ($root->rightChild === null) {
                 return $root->leftChild;
             }
             $temp             = $this->minValueNode($root->rightChild);
@@ -91,7 +93,6 @@ class BSTree
         if ($value > $root->value) {
             return $this->search($root->rightChild, $value);
         }
-
         return null;
     }
 }

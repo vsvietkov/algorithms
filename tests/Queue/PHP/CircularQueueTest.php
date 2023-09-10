@@ -1,11 +1,16 @@
-<?php declare(strict_types=1);
+<?php
 
-require_once __DIR__ . '/QueueCase.php';
-use Algorithms\Queue\CircularQueue;
+declare(strict_types=1);
+
+namespace Vsvietkov\DataStructures\Tests\Queue;
+
+//require_once __DIR__ . '/QueueCase.php';
+use Vsvietkov\DataStructures\Tests\Queue\QueueCase;
+use Vsvietkov\DataStructures\Queue\CircularQueue;
 
 /**
- * @covers Algorithms\Queue\CircularQueue
- * @covers Algorithms\Queue\Queue
+ * @covers Vsvietkov\DataStructures\Queue\CircularQueue
+ * @covers Vsvietkov\DataStructures\Queue\Queue
  */
 final class CircularQueueTest extends QueueCase
 {

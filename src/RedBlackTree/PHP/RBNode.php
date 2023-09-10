@@ -1,5 +1,7 @@
 <?php
 
+namespace Vsvietkov\DataStructures\RedBlackTree;
+
 class RBNode
 {
     public int $value;
@@ -15,8 +17,8 @@ class RBNode
      */
     public function __construct(
         int $value,
-        string $color     = 'red',
-        ?RBNode $parent     = null
+        string $color = 'red',
+        ?RBNode $parent = null
     ) {
         $this->value      = $value;
         $this->color      = $color;

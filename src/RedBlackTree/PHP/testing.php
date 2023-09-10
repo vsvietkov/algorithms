@@ -1,4 +1,6 @@
-<?php require_once 'RBTree.php';
+<?php
+
+use Vsvietkov\DataStructures\RedBlackTree\RBNode;
 
 $tree  = new RBTree();
 $count = (int)readline('Enter a number of nodes: ');

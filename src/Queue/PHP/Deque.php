@@ -1,12 +1,14 @@
-<?php namespace Algorithms\Queue;
+<?php
 
-use Algorithms\Queue\CircularQueue;
+namespace Vsvietkov\DataStructures\Queue;
+
+use Vsvietkov\DataStructures\Queue\CircularQueue;
 
 class Deque extends CircularQueue
 {
     /**
      * Add an element for the front of the queue
-     * 
+     *
      * Returns true on success, false if the queue is already full
      */
     public function enqueueFront(mixed $value): bool
@@ -25,7 +27,6 @@ class Deque extends CircularQueue
             $this->_front--;
         }
         $this->_data[$this->_front] = $value;
-
         return true;
     }
 
@@ -45,13 +46,12 @@ class Deque extends CircularQueue
             // Got all values, set queue as empty
             $this->_front = -1;
             $this->_rear = -1;
-        } else if ($this->_rear < 1) {
+        } elseif ($this->_rear < 1) {
             // Reached the starting position, move the rear pointer to the end
             $this->_rear = $this->_size - 1;
         } else {
             $this->_rear--;
         }
-
         return $returnValue;
     }
 }

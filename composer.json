@@ -10,8 +10,10 @@
             "src/"
         ],
         "psr-4": {
-            "Algorithms\\Queue\\": "src/Queue/PHP/",
-            "Algorithms\\Heap\\": "src/Heap/PHP/"
+            "Vsvietkov\\DataStructures\\Queue\\": "src/Queue/PHP/",
+            "Vsvietkov\\DataStructures\\Heap\\": "src/Heap/PHP/",
+            "Vsvietkov\\DataStructures\\Tests\\Queue\\": "tests/Queue/PHP/",
+            "Vsvietkov\\DataStructures\\Tests\\Heap\\": "tests/Heap/PHP/"
         }
     },
     "require-dev": {

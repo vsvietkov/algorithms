@@ -1,11 +1,15 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
+namespace Vsvietkov\DataStructures\Tests\Heap;
 
 use PHPUnit\Framework\TestCase;
-use Algorithms\Heap\MinHeap;
+use Vsvietkov\DataStructures\Heap\MinHeap;
 
 /**
- * @covers Algorithms\Heap\MinHeap
- * @covers Algorithms\Heap\Heap
+ * @covers Vsvietkov\DataStructures\Heap\MinHeap
+ * @covers Vsvietkov\DataStructures\Heap\Heap
  * */
 final class MinHeapTest extends TestCase
 {
@@ -77,7 +81,7 @@ final class MinHeapTest extends TestCase
         $testingArray = [3, 9, 7, 1, 8, 2, 5];
         $heap = new MinHeap($testingArray);
 
-        foreach($testingArray as $element) {
+        foreach ($testingArray as $element) {
             $heap->delete($element);
         }
         $this->assertEmpty($heap->getData());

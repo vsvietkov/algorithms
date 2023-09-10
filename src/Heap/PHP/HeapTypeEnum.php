@@ -1,4 +1,6 @@
-<?php namespace Algorithms\Heap;
+<?php
+
+namespace Vsvietkov\DataStructures\Heap;
 
 enum HeapTypeEnum
 {

@@ -1,4 +1,6 @@
-<?php namespace Algorithms\Queue;
+<?php
+
+namespace Vsvietkov\DataStructures\Queue;
 
 /** Simple Queue implementation */
 class Queue
@@ -30,7 +32,6 @@ class Queue
             $this->_front = 0;
         }
         $this->_data[++$this->_rear] = $value;
-
         return true;
     }
 

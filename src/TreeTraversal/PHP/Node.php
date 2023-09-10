@@ -1,5 +1,7 @@
 <?php
 
+namespace Vsvietkov\DataStructures\TreeTraversal;
+
 class Node
 {
     public mixed $value;

@@ -1,6 +1,6 @@
 <?php
 
-require_once "Node.php";
+use Vsvietkov\DataStructures\TreeTraversal\Node;
 
 /**
  * @param Node $root
