@@ -16,7 +16,7 @@ jobs:
         run: make install tty-options=
 
       - name: Run code sniffer
-        run: make run-cs
+        run: make run-cs tty-options=
 
       - name: Run tests
         run: make test tty-options=
